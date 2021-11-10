@@ -3,10 +3,10 @@ this is main function for searchMovies
  */
 function searchMovies() {
   $('.search-button').on('click', function () {
-    const inputValue = $('.input-keyword').val();
-    getMovies(inputValue);
-    console.log(inputValue);
-  });
+    const inputValue = $('.input-keyword').val()
+    getMovies(inputValue)
+    console.log(inputValue)
+  })
 }
 
 /*
@@ -18,25 +18,25 @@ const getMovies = function (keyword) {
     url: 'http://www.omdbapi.com/?apikey=8b02c26&s=' + keyword,
     success: successGetListMovies,
     error: (e) => console.log(e.responseText),
-  });
-};
+  })
+}
 
 /* 
 when getMovies success
  */
 const successGetListMovies = (res) => {
-  const movies = res.Search;
-  let cards = '';
+  const movies = res.Search
+  let cards = ''
   movies.forEach((m) => {
-    cards += showCards(m);
-  });
-  $('.movie-container').html(cards);
+    cards += showCards(m)
+  })
+  $('.movie-container').html(cards)
 
   $('.modal-detail-button').on('click', function () {
-    let imdbId = $(this).data('imdbid');
-    getDetailMovies(imdbId);
-  });
-};
+    let imdbId = $(this).data('imdbid')
+    getDetailMovies(imdbId)
+  })
+}
 
 /* 
 getDetailMovies using imdbId
@@ -44,17 +44,17 @@ getDetailMovies using imdbId
 const getDetailMovies = function (imdbId) {
   $.ajax({
     type: 'get',
-    url: `http://www.omdbapi.com/?apikey=8b02c26&i=${imdbId}`,
+    url: `https://www.omdbapi.com/?apikey=8b02c26&i=${imdbId}`,
     success: successGetDetailMovies,
     error: (e) => console.log(e.responseText),
-  });
-};
+  })
+}
 
 const successGetDetailMovies = function (res) {
   // console.log(res);
-  const movieDetail = showMovieDetail(res);
-  $('.modal-body').html(movieDetail);
-};
+  const movieDetail = showMovieDetail(res)
+  $('.modal-body').html(movieDetail)
+}
 
 /* 
 html tag cards
@@ -70,7 +70,7 @@ function showCards(m) {
       data-bs-target="#movieDetailModal" data-imdbid="${m.imdbID}">Show Details</a>
     </div>
   </div>
-</div>`;
+</div>`
 }
 
 /* 
@@ -100,9 +100,9 @@ function showMovieDetail(res) {
                 </ul>
               </div>
             </div>
-          </div>`;
+          </div>`
 }
 
 // run main function
 // getMovies();
-searchMovies();
+searchMovies()
